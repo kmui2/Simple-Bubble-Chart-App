@@ -83,6 +83,7 @@ class App extends React.Component {
         Papa.parse(files[0], {
             delimiter: ",",
             header: true,
+            dynamicTyping: true,
             complete: this.plotBubbleChart,
         });
         Papa.parse(files[0], {
@@ -138,7 +139,7 @@ class App extends React.Component {
                     let x = (start + end + 1) / 2;
                     return {
                         x: x,
-                        y: 1,
+                        y: 10,
                         r: pt.total_survived
                     }
                 }),
@@ -153,11 +154,11 @@ class App extends React.Component {
                     let x = (start + end + 1) / 2;
                     return {
                         x: x,
-                        y: 1,
+                        y: 10,
                         r: pt.total_survived
                     }
                 }),
-                backgroundColor: "#87CEFA"
+                backgroundColor: "#87CEFA",
             },
             {
                 label: ['Male <0.5'],
@@ -195,13 +196,13 @@ class App extends React.Component {
             scales: {
                 yAxes: [{
                     ticks: {
-                        min: -1,
-                        max: 3,
+                        min: -10,
+                        max: 20,
                         // Include a dollar sign in the ticks
                         callback: function (value, index, values) {
                             if (value == 0)
                                 return 'Male';
-                            if (value == 1)
+                            if (value == 10)
                                 return 'Female'
                         }
                     }
@@ -216,32 +217,6 @@ class App extends React.Component {
             options: options
 
         })
-
-        // For a bubble chart
-        // var myBubbleChart = new Chart(ctx, {
-        //     type: 'bubble',
-        //     data: chartData,
-        //     options: {
-        //         scales: {
-        //             yAxes: [{
-        //                 ticks: {
-        //                     min: -1,
-        //                     max: 3,
-        //                     // Include a dollar sign in the ticks
-        //                     callback: function (value, index, values) {
-        //                         if (value == 0)
-        //                             return 'Male';
-        //                         if (value == 1)
-        //                             return 'Female'
-        //                     }
-        //                 }
-        //             }]
-        //         },
-        //         responsive: true,
-        //         maintainAspectRatio: false
-        //     }
-        // });
-
     }
 
     render() {
